@@ -30,6 +30,14 @@ export const API_PATHS = {
         UPDATE_TODO_CHECKLIST: (taskId) => `/api/tasks/tasks/${taskId}/todo`
     },
 
+    TEAMS: {
+        CREATE_TEAM: `/api/teams/`,
+        UPDATE_TEAM: (teamId) => `/api/teams/${teamId}`,
+        GET_ALL_TEAMS: `/api/teams/`,
+        DELETE_TEAM: (teamId) => `/api/teams/${teamId}`
+
+    },
+
     REPORTS: {
         EXPORT_TASKS: `/api/reports/tasks`,
         EXPORT_USERS: `/api/reports/users`,

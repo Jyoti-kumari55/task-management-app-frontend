@@ -17,8 +17,7 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
       if (response.data?.users?.length > 0) {
         setAllUsers(response.data?.users);
       }
-        console.log("users", response.data?.users)
-
+      console.log("users", response.data?.users);
     } catch (error) {
       console.error("Error occurred while fetching the users.", error.message);
     }
@@ -61,7 +60,7 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
 
       {seletedUsersAvatars.length > 0 && (
         <div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
-        <AvatarGroup avatars={seletedUsersAvatars} maxVisible={3} />
+          <AvatarGroup avatars={seletedUsersAvatars} maxVisible={3} />
         </div>
       )}
 
@@ -98,9 +97,7 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
         </div>
 
         <div className="flex justify-end gap-4 pt-4">
-          <button 
-          className="card-btn" 
-          onClick={() => setIsModalOpen(false)}>
+          <button className="card-btn" onClick={() => setIsModalOpen(false)}>
             CANCEL
           </button>
           <button className="card-btn-fill" onClick={handleAssign}>

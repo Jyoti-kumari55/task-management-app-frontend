@@ -1,5 +1,3 @@
-import React from "react";
-
 const TaskStatusTabs = ({ tabs, activeTab, setActiveTab }) => {
   return (
     <div className="my-2">
@@ -27,7 +25,9 @@ const TaskStatusTabs = ({ tabs, activeTab, setActiveTab }) => {
               </span>
             </div>
 
-            {activeTab === tab.label && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></div>}
+            {activeTab === tab.label && (
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"></div>
+            )}
           </button>
         ))}
       </div>
