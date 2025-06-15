@@ -1,11 +1,11 @@
 import { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { useLocation, useNavigate } from "react-router-dom";
-import Modal from "../../components/Modal";
 import DeleteAlert from "../../components/DeleteAlert";
 import { LuArrowLeft } from "react-icons/lu";
 import TaskLogic from "../../components/task/TaskLogic";
 import TaskForm from "../../components/task/TaskForm";
+import Modal from "../../components/Modal";
 
 const CreateTask = () => {
   const location = useLocation();

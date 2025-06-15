@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useUserAuth } from "../../hooks/useUserAuth";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import { API_PATHS } from "../../utils/apiPaths";
-import InfoCard from "../../components/Cards/InfoCard";
 import moment from "moment";
-import { addUserSeparator } from "../../utils/helper";
 import { LuArrowRight } from "react-icons/lu";
-import TaskListTable from "../../components/TaskCards/TaskListTable";
+import { useUserAuth } from "../../hooks/useUserAuth";
+import { UserContext } from "../../context/userContext";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
+import InfoCard from "../../components/Cards/InfoCard";
+import TaskListTable from "../../components/Task/TaskListTable";
+import { API_PATHS } from "../../utils/apiPaths";
+import { addUserSeparator } from "../../utils/helper";
 
 const UserDashboard = () => {
   useUserAuth();

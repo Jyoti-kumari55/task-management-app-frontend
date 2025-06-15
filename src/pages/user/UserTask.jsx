@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../hooks/useUserAuth";
 import { UserContext } from "../../context/userContext";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { API_PATHS } from "../../utils/apiPaths";
-import TaskStatusTabs from "../../components/TaskStatusTabs";
 import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
+import TaskStatusTabs from "../../components/Task/TaskStatusTabs";
 import TaskCard from "../../components/Cards/TaskCard";
-
 
 const UserTask = () => {
   useUserAuth();
@@ -20,7 +19,7 @@ const UserTask = () => {
 
   const [tabs, setTabs] = useState([]);
   const [filterStatus, setFilterStatus] = useState("All");
-  console.log("njdknfkj", filterStatus)
+  console.log("njdknfkj", filterStatus);
 
   const navigate = useNavigate();
 

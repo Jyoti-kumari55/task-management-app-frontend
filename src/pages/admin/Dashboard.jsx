@@ -9,9 +9,9 @@ import moment from "moment";
 import InfoCard from "../../components/Cards/InfoCard";
 import { addUserSeparator } from "../../utils/helper";
 import { LuArrowRight, LuColumns2 } from "react-icons/lu";
-import TaskListTable from "../../components/TaskCards/TaskListTable";
 import CustomPieChart from "../../components/Charts/CustomPieChart";
 import CustomBarChart from "../../components/Charts/CustomBarChart";
+import TaskListTable from "../../components/Task/TaskListTable";
 
 const COLORS = ["#8D51FF", "#00B8DB", "#7BCE00"];
 

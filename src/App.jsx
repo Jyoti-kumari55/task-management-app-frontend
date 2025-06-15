@@ -18,8 +18,8 @@ import ViewTaskDetails from "./pages/user/ViewTaskDetails";
 import PrivateRoute from "./role/PrivateRoute";
 import UserProvider, { UserContext } from "./context/userContext";
 import UserReports from "./pages/admin/UserReports";
-import UserDashboard from "./pages/user/UserDashboard";
 import UserModal from "./components/UserModal";
+import UserDashboard from "./pages/user/UserDashboard";
 
 const App = () => {
   return (

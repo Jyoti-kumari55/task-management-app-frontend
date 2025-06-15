@@ -1,7 +1,11 @@
 import React from "react";
 import StatCard from "./StatCard";
+import { useNavigate } from "react-router-dom";
+import { LuTrash2 } from "react-icons/lu";
 
 const UserCard = ({ userInfo }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="user-card p-2">
       <div className="flex items-center justify-between">
@@ -17,6 +21,12 @@ const UserCard = ({ userInfo }) => {
             <p className="text-xs text-gray-600">{userInfo?.email}</p>
           </div>
         </div>
+        <button
+          className="text-red-600"
+          // onClick={() => onDelete && onDelete(teamInfo._id)}
+        >
+          <LuTrash2 />
+        </button>
       </div>
 
       <div className="flex flex-wrap items-end gap-3 mt-5">
@@ -41,4 +51,3 @@ const UserCard = ({ userInfo }) => {
 };
 
 export default UserCard;
-

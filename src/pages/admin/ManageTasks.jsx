@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { useNavigate } from "react-router-dom";
+import { LuFileSpreadsheet, LuSquare, LuSquarePlus } from "react-icons/lu";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import { LuFileSpreadsheet, LuSquare, LuSquarePlus } from "react-icons/lu";
-import TaskStatusTabs from "../../components/TaskStatusTabs";
+import DashboardLayout from "../../components/layouts/DashboardLayout";
+import TaskStatusTabs from "../../components/Task/TaskStatusTabs";
 import TaskCard from "../../components/Cards/TaskCard";
 
 const ManageTasks = () => {
@@ -44,8 +44,8 @@ const ManageTasks = () => {
   const downloadReportHandler = async () => {};
 
   const navigateToCreatePage = () => {
-    navigate("/admin/create-task")
-  }
+    navigate("/admin/create-task");
+  };
   useEffect(() => {
     getAllTasks(filterStatus);
     return () => {};
@@ -66,13 +66,13 @@ const ManageTasks = () => {
               Download Report
             </button> */}
 
-             <button
-                className="flex lg:hidden add-btn2"
-                onClick={navigateToCreatePage}
-              >
-                <LuSquarePlus className="text-lg" />
-                Create Task
-              </button>
+            <button
+              className="flex lg:hidden add-btn2"
+              onClick={navigateToCreatePage}
+            >
+              <LuSquarePlus className="text-lg" />
+              Create Task
+            </button>
           </div>
 
           {tabs?.length > 0 && (
@@ -90,7 +90,7 @@ const ManageTasks = () => {
                 Download Report
               </button> */}
 
-               <button
+              <button
                 className="hidden lg:flex add-btn2"
                 onClick={navigateToCreatePage}
               >
@@ -99,8 +99,6 @@ const ManageTasks = () => {
               </button>
             </div>
           )}
-
-          
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
