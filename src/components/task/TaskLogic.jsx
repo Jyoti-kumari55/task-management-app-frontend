@@ -79,11 +79,7 @@ const TaskLogic = ({ taskId, navigate, children }) => {
         requestBody
       );
 
-      toast.success(
-        `Task created successfully. Team ${
-          response.data.teamAction === "created" ? "created" : "updated"
-        }.`
-      );
+      toast.success(`Task created successfully.}.`);
       clearData();
 
       if (teamMode === "new") {

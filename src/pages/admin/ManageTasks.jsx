@@ -70,7 +70,7 @@ const ManageTasks = () => {
               className="flex lg:hidden add-btn2"
               onClick={navigateToCreatePage}
             >
-              <LuSquarePlus className="text-lg" />
+              <LuSquarePlus className="text-sm md:text-base" />
               Create Task
             </button>
           </div>
@@ -94,7 +94,7 @@ const ManageTasks = () => {
                 className="hidden lg:flex add-btn2"
                 onClick={navigateToCreatePage}
               >
-                <LuSquarePlus className="text-lg" />
+                <LuSquarePlus className="text-base" />
                 Create Task
               </button>
             </div>

@@ -10,6 +10,7 @@ import SelectUsers from "../../components/Cards/SelectUsers";
 import TeamModal from "../../components/TeamModal";
 import UserList from "../../components/UserList";
 import TeamList from "../../components/TeamList";
+import CreateUser from "./CreateUser";
 
 const ManageUsers = () => {
   const [allUsers, setAllUsers] = useState([]);
@@ -20,7 +21,18 @@ const ManageUsers = () => {
   const [teamName, setTeamName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isCreateUserModalOpen, setIsCreateUserModalOpen] = useState(false);
 
+  const getCurrentUser = async () => {
+    try {
+      // Assuming you have an endpoint to get current user info
+      const res = await axiosInstance.get(API_PATHS.AUTH.GET_PROFILE);
+      setCurrentUser(res.data.user);
+    } catch (error) {
+      console.error("Error fetching current user:", error);
+    }
+  };
   const getAllUsers = async () => {
     try {
       const res = await axiosInstance.get(API_PATHS.USERS.GET_ALL_USERS);
@@ -38,6 +50,32 @@ const ManageUsers = () => {
     } catch (error) {
       console.error("Error fetching teams:", error.message);
       toast.error(error?.response?.data?.error || "Failed to fetch team");
+    }
+  };
+
+  const handleUserCreated = (newUser) => {
+    // Add the new user to the state
+    setAllUsers((prevUsers) => [...prevUsers, newUser]);
+    setIsCreateUserModalOpen(false);
+  };
+  // Handle user deletion
+  const handleDeleteUser = async (userId) => {
+    try {
+      const res = await axiosInstance.delete(
+        API_PATHS.USERS.DELETE_USER(userId)
+      );
+      toast.success(res?.data?.message || "User deleted successfully");
+
+      // Remove the deleted user from the state
+      setAllUsers((prevUsers) =>
+        prevUsers.filter((user) => user._id !== userId)
+      );
+
+      // Refresh teams list in case the deleted user was in any teams
+      getAllTeams();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      toast.error(error?.response?.data?.message || "Failed to delete user");
     }
   };
 
@@ -100,6 +138,7 @@ const ManageUsers = () => {
   };
 
   useEffect(() => {
+    getCurrentUser();
     getAllUsers();
     getAllTeams();
   }, []);
@@ -108,18 +147,35 @@ const ManageUsers = () => {
     <DashboardLayout activeMenu="Team">
       <div className="mt-5 mb-10">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-medium">Team Members</h2>
-          <button
-            className="flex add-btn2"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <LuSquarePlus className="text-lg" />
-            Create Team
-          </button>
+          <h2 className="text-base md:text-xl font-medium">Team Members</h2>
+          {currentUser?.role === "admin" && (
+            <button
+              className="flex add-btn2"
+              onClick={() => setIsCreateUserModalOpen(true)}
+            >
+              <LuSquarePlus className="text-sm md:text-base" />
+              Create Member
+            </button>
+          )}
         </div>
 
-        <UserList users={allUsers} />
-        <h2 className="text-xl font-medium pt-6">Teams</h2>
+        <UserList
+          users={allUsers}
+          onDeleteUser={handleDeleteUser}
+          currentUserRole={currentUser?.role}
+        />
+        <div className="flex justify-between pt-6">
+          <p className="text-base md:text-xl font-medium">Teams</p>
+          {currentUser?.role === "admin" && (
+            <button
+              className="flex add-btn2"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <LuSquarePlus className="text-sm md:text-base" />
+              Create Team
+            </button>
+          )}
+        </div>
         <TeamList
           teams={allTeams}
           onEdit={openModalForEdit}
@@ -137,6 +193,11 @@ const ManageUsers = () => {
           setSelectedUsers={setSelectedUsers}
           onClose={resetModal}
           onSubmit={handleSubmit}
+        />
+        <CreateUser
+          isOpen={isCreateUserModalOpen}
+          onClose={() => setIsCreateUserModalOpen(false)}
+          onUserCreated={handleUserCreated}
         />
       </div>
     </DashboardLayout>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-
+import { BiTaskX } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useUserAuth } from "../../hooks/useUserAuth";
 import { UserContext } from "../../context/userContext";
@@ -74,25 +74,34 @@ const UserTask = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-          {allTasks?.map((todo, index) => (
-            <TaskCard
-              key={todo._id}
-              title={todo.title}
-              description={todo.description}
-              priority={todo.priority}
-              status={todo.status}
-              progress={todo.progress}
-              createdAt={todo.createdAt}
-              dueDate={todo.dueDate}
-              assignedTo={todo.assignedTo?.map((item) => item.profileImageUrl)}
-              attachmentCount={todo.attachments?.length || 0}
-              completedTodoCount={todo.completedTodoCount || 0}
-              todoCheckList={todo.todoCheckList || []}
-              onClick={() => {
-                clickHandler(todo._id);
-              }}
-            />
-          ))}
+          {allTasks.length === 0 ? (
+            <div className="flex flex-col justify-center items-center h-[60vh] text-xl font-semibold col-span-full">
+              <BiTaskX size={150} className="text-gray-600 opacity-10" />
+              <span>No task Assigned yet!!</span>
+            </div>
+          ) : (
+            allTasks?.map((todo, index) => (
+              <TaskCard
+                key={todo._id}
+                title={todo.title}
+                description={todo.description}
+                priority={todo.priority}
+                status={todo.status}
+                progress={todo.progress}
+                createdAt={todo.createdAt}
+                dueDate={todo.dueDate}
+                assignedTo={todo.assignedTo?.map(
+                  (item) => item.profileImageUrl
+                )}
+                attachmentCount={todo.attachments?.length || 0}
+                completedTodoCount={todo.completedTodoCount || 0}
+                todoCheckList={todo.todoCheckList || []}
+                onClick={() => {
+                  clickHandler(todo._id);
+                }}
+              />
+            ))
+          )}
         </div>
       </div>
     </DashboardLayout>
